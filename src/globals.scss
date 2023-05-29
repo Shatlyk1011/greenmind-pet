@@ -1,0 +1,25 @@
+$color-main: #c1dcdc;
+$color-black: #1e1e1e;
+$color-black-5: rgba($color-black, 0.5);
+$color-black-25: rgba($color-black, 0.25);
+
+* {
+  padding: 0;
+  margin: 0;
+  line-height: 1;
+}
+
+html {
+  font-size: 62.5%;
+  font-family: "Roboto", sans-serif;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1.6rem;
+  color: $color-black;
+}
+
+ul {
+  list-style: none;
+}

@@ -1,10 +1,14 @@
-<script setup>
-</script>
-
 <template>
- <h2>Hello world</h2>
+  <div class="app" >  
+    <Nav/>
+    <Hero/>
+    <Selling/>
+  </div>
 </template>
 
-<style scoped>
+<script setup>
+import Nav from '@/components/Nav.vue';
+import Hero from '@/components/Hero.vue';
+import Selling from '@/components/Selling.vue';
 
-</style>
+</script>
