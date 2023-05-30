@@ -9,7 +9,7 @@
     <ul class="icons" >
       <li class="icon"><img src="../assets/icons/nav-bucket.png" alt="bucket"></li>
       <li class="icon"><img src="../assets/icons/nav-profile.png" alt="l"></li>
-      <li class="icon"><img src="../assets/icons/nav-stick.png" alt="stick"></li>
+      <li class="stick"><img src="../assets/icons/nav-stick.png" alt="stick"></li>
       <li class="icon"><img src="../assets/icons/nav-menu.png" alt="menu"></li>
     </ul>
   </header>
@@ -50,6 +50,7 @@ const onHover = (state) => {
       font-size: 2.4rem;
       font-weight: 600;
       margin-right: 9.6rem;
+      cursor: pointer;
     }
 
     .links, 
@@ -61,6 +62,7 @@ const onHover = (state) => {
 
     .links {
       font-size: 1.8rem;
+      font-weight: 500;
       letter-spacing: 0.4px;
       .link {
         cursor: pointer;
@@ -82,12 +84,14 @@ const onHover = (state) => {
       margin-left: auto;
       display: flex;
       align-items: center;
-      .icon {
+      .icon, .stick {
         padding: 1rem;
         border-radius: 6px;
         cursor: pointer;
         transition: all 0.2s ease-out;
-        img {}
+        &:hover {
+          background-color: $color-main;
+        }
       }
     }
   }

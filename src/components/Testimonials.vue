@@ -43,7 +43,7 @@ const testimonials = [
 <style lang="scss" scoped>
 @import '@/globals';
 .section-testimonials {
-  padding: 9.6rem;
+  padding: 0 9.6rem 9.6rem;
   .wrap {
     display: flex;
     justify-content: space-between;
@@ -53,7 +53,6 @@ const testimonials = [
       font-weight: 700;
       line-height: 1.3;
     }
-
     .cursor {
       color: $color-main;
       display: flex;

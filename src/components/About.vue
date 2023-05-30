@@ -42,7 +42,7 @@
 @import '@/globals';
 
 .section-about {
-  padding: 9.6rem;
+  padding: 0 9.6rem 9.6rem;
   max-width: 144rem;
   margin: 0 auto;
   .about {
