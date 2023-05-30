@@ -30,7 +30,7 @@ const  cards = [
 @import '@/globals';
 .section-categories {
   text-align: center;
-  padding: 9.6rem 0;
+  padding: 0 0 9.6rem;
   .title {
     font-size: 3.2rem;
     font-weight: 600;

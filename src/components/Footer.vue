@@ -44,12 +44,10 @@
     </div>
 
     <div class="copyright">2023 Все права защищены. Срок использования GREEMIND</div>
+    <div class="copyright">Дизайн <a target="_blank" href="https://www.figma.com/file/FKd689NuU91mpisQstSaO9/E-Commerce-Plant-Shop-Website-(Community)?type=design&node-id=17%3A40&t=MKadxuWrtAi2VwqT-1">Figma</a></div>
   </footer>
 </template>
 
-<script setup>
-
-</script>
 
 <style lang="scss" scoped>
 @import '@/globals';
@@ -59,6 +57,7 @@
   .footer {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 10rem;
     .social {
       display: flex;
       flex-direction: column;
@@ -129,11 +128,9 @@
   }
 
   .copyright {
-    margin-top: 10rem;
     font-size: 1.8rem;
     font-weight: 500;
     color: $color-black-5;
-
   }
 }
 </style>

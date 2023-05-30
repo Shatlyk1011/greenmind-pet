@@ -1,5 +1,5 @@
 <template>
-  <section class="section-hero">
+  <section class="section-hero" v-intersection-observer="onIntersectionObserver" ref="root">
     <div class="container">
       <div class="hero">
         <div class="left">
@@ -28,15 +28,31 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { vIntersectionObserver } from '@vueuse/components'
 
+const root = ref(null)
+
+const onIntersectionObserver = ([{ isIntersecting }] ) => {
+  if(isIntersecting) root.value.classList.add('visible')
+}
 </script>
 
 <style lang="scss" scoped>
 @import '@/globals';
 
 .section-hero {
+  // margin: 0 9.6rem;
+  padding: 0 9.6rem 9.6rem;
+  opacity: 0;
+  transform: translateX(-50rem) scale(0);
 
-  margin: 0 9.6rem;
+  transition: all 0.5s ease-in-out;
+
+  &.visible {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
   .container {
     max-width: 144rem;
     height: 51rem;
@@ -56,6 +72,12 @@
         h1 {
           font-size: 6.4rem;
           line-height: 1.1;
+
+          transition: all 0.3s ease-in-out;
+
+          &:hover {
+            transform: skewX(-4deg) scale(1.02);
+          }
         }
 
         .clients {
@@ -85,6 +107,10 @@
             font-size: 1.8rem;
             line-height: 1.5;
 
+            &:focus {
+              outline: 2px solid $color-black;
+            }
+
             &::placeholder {
               font-family: inherit;
               color: $color-black-5;
@@ -109,6 +135,10 @@
 
             &:hover {
               background-color: rgba($color-main, 0.8);
+            }
+
+            &:focus {
+              outline: 2px solid $color-black;
             }
             img {
             }
