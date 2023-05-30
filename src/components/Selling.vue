@@ -23,6 +23,8 @@ let cards = [
   {title: 'Natural Plants', price: 1400, imgUrl: 'https://images.unsplash.com/photo-1545239705-1564e58b9e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'},
 
   {title: 'Natural Plants', price: 1400, imgUrl: 'https://images.unsplash.com/photo-1545239705-1564e58b9e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'},
+  {title: 'Natural Plants', price: 900, imgUrl: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80'},
+
 
   {title: 'Natural Plants', price: 900, imgUrl: 'https://images.unsplash.com/photo-1509423350716-97f9360b4e09?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=735&q=80'},
   {title: 'Natural Plants', price: 3500, imgUrl: 'https://images.unsplash.com/photo-1545239705-1564e58b9e4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=687&q=80'},
@@ -33,7 +35,6 @@ let cards = [
 @import '@/globals';
 .section-selling {
   display: flex;
-  // justify-content: center;
   padding: 9.6rem;
   max-width: 144rem;
   margin: 0 auto;
@@ -74,12 +75,16 @@ let cards = [
     display: flex;
     width: 100vw;
     gap: 4.8rem;
+    // overflow-x: scroll;
     .card {
-      width: 100%;
       border-radius: 1.2rem;
       display: flex;
       flex-direction: column;
       gap: 1.2rem;
+      flex-shrink: 0;
+      flex-grow: 1;
+      overflow: hidden;
+      flex-basis: 25rem;
       img {
         display: inline-block;
         width: 100%;
