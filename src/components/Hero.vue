@@ -45,6 +45,7 @@
     position: relative;
     box-sizing: border-box;
     margin: 0 auto;
+    border-radius: 2.4rem;
 
     .hero {
       display: flex;
