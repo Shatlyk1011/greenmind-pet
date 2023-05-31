@@ -66,6 +66,7 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
 @import '@/globals';
 .section-testimonials {
 
+
   &.visible {
     opacity: 1;
     -webkit-animation: slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s both;
@@ -111,7 +112,8 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
     flex-shrink: 0;
     overflow-x: scroll;
     overscroll-behavior-x: contain;
-    padding: 0 0 9.6rem  9.6rem;
+    padding: 0 0 9.6rem 9.6rem;
+    
     &::-webkit-scrollbar {
       display: none;
     }
@@ -123,7 +125,7 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
       background-color: $color-main;
       max-width: 60%;
       border-radius: 1.2rem;
-
+      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
       box-sizing: border-box;
 
       p {
