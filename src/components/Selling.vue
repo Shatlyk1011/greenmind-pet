@@ -25,7 +25,6 @@
       :navigation="{prevEl: '.prevEl', nextEl: '.nextEl'}"
       :space-between="48" 
       :slides-per-view="'auto'" 
-      :pagination="true"
     >
       <swiper-slide class="card" v-for="(card, index) in cards" :key="index">
         <div class="img">
@@ -44,7 +43,7 @@
 <script setup>
 import { ref } from 'vue'
 import { vIntersectionObserver } from '@vueuse/components'
-import { Navigation, Pagination } from 'swiper'
+import { Navigation } from 'swiper'
 import { Swiper, SwiperSlide, } from 'swiper/vue'
 import 'swiper/css'
 import 'swiper/css/navigation'
