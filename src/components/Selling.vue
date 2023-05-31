@@ -46,7 +46,7 @@
       class="cards"
       :modules="[Navigation]"
       :navigation="{ prevEl: '.prevEl', nextEl: '.nextEl' }"
-      :space-between="48"
+      :space-between="cardGap"
       :slides-per-view="'auto'"
     >
       <swiper-slide class="card" v-for="(card, index) in cards" :key="index">
@@ -63,8 +63,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { computed, ref } from "vue"
 import { vIntersectionObserver } from "@vueuse/components"
+import { useWindowSize } from "@vueuse/core"
 import { Navigation } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/vue"
 import "swiper/css"
@@ -113,6 +114,15 @@ let cards = [
   },
 ]
 
+const { width } = useWindowSize()
+
+const cardGap = computed(() => {
+  let sWidth = width.value
+  if (sWidth <= 1296 && sWidth >= 1001) return 32
+  else if (width.value <= 1000) return 24
+  else return 48
+})
+
 const root = ref(null)
 
 const onIntersectionObserver = ([{ isIntersecting }]) => {
@@ -124,17 +134,25 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 @import "@/globals";
 .section-selling {
   display: flex;
-  padding: 0 9.6rem 9.6rem;
+  padding: 0 0 9.6rem 9.6rem;
   max-width: 144rem;
   margin: 0 auto;
   position: relative;
   opacity: 0;
+
+  @include respond(tab-land) {
+    padding: 0 0 4.8rem 4.8rem;
+  }
+  @include respond(tab-port) {
+    padding: 0 0 3.2rem 3.2rem;
+  }
   &.visible {
     opacity: 1;
     -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       0.4s both;
     animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
   }
+
   .btns {
     display: flex;
     gap: 1.2rem;
@@ -142,6 +160,12 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     top: -5rem;
     right: 9.6rem;
     z-index: 5000;
+
+    @include respond(tab-land) {
+      top: -3.5rem;
+      right: 4.8rem;
+      gap: 8px;
+    }
 
     button {
       all: unset;
@@ -151,13 +175,20 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       cursor: pointer;
       transition: all 0.2s ease-in-out;
 
-      &::after {
-        content: "";
+      @include respond(tab-land) {
+        padding: 2px 3px;
+        border-radius: 0.8rem;
       }
 
       svg {
         fill: $color-main;
         transition: all 0.3s ease-in-out;
+
+        @include respond(tab-land) {
+          padding: 3px 4px;
+          width: 12px;
+          height: 12px;
+        }
       }
 
       &:hover {
@@ -173,10 +204,20 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     max-width: 20rem;
     margin-right: 6rem;
     justify-self: flex-start;
+
+    @include respond(tab-land) {
+      margin-right: 3rem;
+    }
+
     .best {
       h3 {
         font-size: 3.2rem;
         font-weight: 500;
+
+        @include respond(tab-land) {
+          font-size: 2.8rem;
+          line-height: 1.1;
+        }
       }
 
       h4 {
@@ -184,6 +225,11 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         color: $color-black-5;
         font-weight: 500;
         line-height: 1.4;
+
+        @include respond(tab-land) {
+          // font-size: 2.8rem;
+          line-height: 1.2;
+        }
       }
 
       button {
@@ -197,17 +243,16 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         font-weight: 500;
         box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12);
 
+        @include respond(tab-land) {
+          padding: 0.8rem 1.6rem;
+        }
+
         &:active {
           transform: translateY(4px) scale(0.98);
           box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06),
             0 2px 2px rgba(0, 0, 0, 0.06);
         }
 
-        img {
-          fill: red;
-          color: red;
-          stroke: red;
-        }
         &:hover {
           background-color: rgba($color-main, 0.7);
         }
@@ -216,8 +261,6 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
   }
   .cards {
     display: flex;
-    width: 100vw;
-    gap: 4.8rem;
     overflow-x: scroll;
 
     &::-webkit-scrollbar {
@@ -231,6 +274,14 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       flex-grow: 1;
       overflow: hidden;
       flex-basis: 25rem;
+
+      &:last-child {
+        padding-right: 4.8rem;
+      }
+
+      @include respond(tab-land) {
+        gap: 0.8rem;
+      }
 
       .img {
         position: relative;

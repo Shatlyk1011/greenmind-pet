@@ -61,10 +61,23 @@
 .section-footer {
   padding: 4.8rem 9.6rem;
   background-color: $color-main;
+
+  @include respond(tab-land) {
+    padding: 3.2rem 4.8rem;
+  }
+
+  @include respond(tab-port) {
+    padding: 3.2rem;
+  }
+
   .footer {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10rem;
+
+    @include respond(tab-land) {
+      margin-bottom: 7rem;
+    }
     .social {
       display: flex;
       flex-direction: column;
