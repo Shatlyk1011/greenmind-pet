@@ -44,6 +44,7 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
 .section-hero {
   padding: 0 9.6rem 9.6rem;
   opacity: 0;
+ 
   &.visible {
     opacity: 1;
     -webkit-animation: slide-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
@@ -58,10 +59,12 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
     box-sizing: border-box;
     margin: 0 auto;
     border-radius: 2.4rem;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px, rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
 
     .hero {
       display: flex;
       height: 100%;
+
 
       .left {
         width: 51rem;
@@ -92,19 +95,22 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
           margin-top: 4.8rem;
           position: relative;
           box-sizing: border-box;
-
+          
           input {
             all: unset;
             background-color: #fff;
             padding: 1.8rem;
             width: 100%;
             box-sizing: border-box;
-            border-radius: 1.2rem;
             font-size: 1.8rem;
+            border-radius: 1.2rem;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
             line-height: 1.5;
+            transition: all 0.3 ease-in;
 
             &:focus {
               outline: 2px solid $color-black;
+              box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
             }
 
             &::placeholder {
@@ -118,7 +124,7 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
             all: unset;
             position: absolute;
             top: 0;
-            right: 0.4rem;
+            right: 0.6rem;
             z-index: 1000;
             background-color: $color-main;
             padding: 1.4rem;

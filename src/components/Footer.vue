@@ -7,15 +7,14 @@
 
         <div class="icons">
           <div class="icon">
-            <img src="./../assets/icons/fb.png" alt="facebook icon">
+            <img src="./../assets/icons/fb.png" alt="facebook icon" />
           </div>
           <div class="icon">
-            <img src="./../assets/icons/inst.png" alt="instagram icon">
+            <img src="./../assets/icons/inst.png" alt="instagram icon" />
           </div>
           <div class="icon">
-            <img src="./../assets/icons/twitter.png" alt="twitter icon">
+            <img src="./../assets/icons/twitter.png" alt="twitter icon" />
           </div>
-
         </div>
       </div>
 
@@ -43,14 +42,22 @@
       </div>
     </div>
 
-    <div class="copyright">2023 Все права защищены. Срок использования GREEMIND</div>
-    <div class="copyright">Дизайн <a target="_blank" href="https://www.figma.com/file/FKd689NuU91mpisQstSaO9/E-Commerce-Plant-Shop-Website-(Community)?type=design&node-id=17%3A40&t=MKadxuWrtAi2VwqT-1">Figma</a></div>
+    <div class="copyright">
+      2023 Все права защищены. Срок использования GREEMIND
+    </div>
+    <div style="margin-top: 1rem" class="copyright">
+      Дизайн
+      <a
+        target="_blank"
+        href="https://www.figma.com/file/FKd689NuU91mpisQstSaO9/E-Commerce-Plant-Shop-Website-(Community)?type=design&node-id=17%3A40&t=MKadxuWrtAi2VwqT-1"
+        >Figma</a
+      >
+    </div>
   </footer>
 </template>
 
-
 <style lang="scss" scoped>
-@import '@/globals';
+@import "@/globals";
 .section-footer {
   padding: 4.8rem 9.6rem;
   background-color: $color-main;
@@ -88,17 +95,20 @@
           position: relative;
           box-sizing: border-box;
 
+          &:hover {
+            animation: spin 1s linear infinite;
+          }
+
           img {
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-
           }
         }
       }
     }
-    
+
     .links {
       display: flex;
       gap: 4.8rem;
@@ -124,7 +134,7 @@
           }
         }
       }
-    } 
+    }
   }
 
   .copyright {
