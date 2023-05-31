@@ -65,8 +65,16 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
   max-width: 144rem;
   margin: 0 auto;
   opacity: 0;
-  transform: translateX(-50rem) scale(0);
   transition: all 0.7s ease-in-out;
+
+  @include respond(tab-land) {
+    padding: 0 4.8rem 4.8rem;
+  }
+
+  @include respond(tab-port) {
+    padding: 0 3.2rem 3.2rem;
+  }
+
   & *::selection {
     background-color: $color-black-25;
     color: $color-black;
@@ -78,6 +86,7 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       both;
     animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
   }
+
   .about {
     text-align: center;
     .title {
@@ -90,6 +99,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       font-weight: 500;
       color: $color-black-5;
       margin: 1.2rem 0 4.8rem;
+
+      @include respond(tab-land) {
+        margin: 1.2rem 0 3.2rem;
+      }
     }
 
     .cards {

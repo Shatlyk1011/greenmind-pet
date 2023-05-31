@@ -1,5 +1,9 @@
 <template>
-  <section class="section-testimonials" v-intersection-observer="onIntersectionObserver" ref="root">
+  <section
+    class="section-testimonials"
+    v-intersection-observer="onIntersectionObserver"
+    ref="root"
+  >
     <div class="wrap">
       <div class="title">Что клиенты говорят о GREEMIND?</div>
       <div class="pagination">
@@ -7,25 +11,25 @@
       </div>
     </div>
 
-    <swiper class="testimonials" 
-    :modules="[Pagination]"
-    :space-between="54"
-    :slides-per-view="'auto'" 
-    :pagination="paginationConfig"
+    <swiper
+      class="testimonials"
+      :modules="[Pagination]"
+      :space-between="cardGap"
+      :slides-per-view="'auto'"
+      :pagination="paginationConfig"
     >
       <swiper-slide class="testimonial" v-for="t in testimonials">
         <p>{{ t.text }}</p>
         <div class="rate">
-          <div class="wrap">
-
-            <img src="./../assets/icons/,,.png" alt=",,">
+          <div class="rate-wrap">
+            <img src="./../assets/icons/,,.png" alt=",," />
             <div class="author">
-              {{ t.author}}
+              {{ t.author }}
               <span>{{ t.profession }}</span>
             </div>
           </div>
           <div class="star">
-            <img src="./../assets/icons/star.png" alt="star">
+            <img src="./../assets/icons/star.png" alt="star" />
             {{ t.rate }}
           </div>
         </div>
@@ -35,42 +39,64 @@
 </template>
 
 <script setup>
-
-import { ref } from 'vue'
-import { vIntersectionObserver } from '@vueuse/components'
-import { Pagination } from 'swiper'
-import { Swiper, SwiperSlide, } from 'swiper/vue'
-import 'swiper/css'
-import 'swiper/css/navigation'
+import { ref, computed } from "vue"
+import { vIntersectionObserver } from "@vueuse/components"
+import { Pagination } from "swiper"
+import { useWindowSize } from "@vueuse/core"
+import { Swiper, SwiperSlide } from "swiper/vue"
+import "swiper/css"
+import "swiper/css/navigation"
 
 const testimonials = [
-  {text: 'Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', author: 'Игорь Русский', profession: 'Музыкант', rate: '4.5'},
-  {text: 'Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', author: 'Андрей Павлов', profession: 'Артист', rate: '4.8'},
-  {text: 'Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.', author: 'Сергей Шнуров', profession: 'Юрист', rate: '4.6'}
+  {
+    text: "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+    author: "Игорь Русский",
+    profession: "Музыкант",
+    rate: "4.5",
+  },
+  {
+    text: "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+    author: "Андрей Павлов",
+    profession: "Артист",
+    rate: "4.8",
+  },
+  {
+    text: "Jorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
+    author: "Сергей Шнуров",
+    profession: "Юрист",
+    rate: "4.6",
+  },
 ]
 
-const paginationConfig = { 
-  el: '.pagination', bulletClass: 'pagination-item',
-  bulletActiveClass: 'pagination-item--active',
-  clickable: true
+const { width, height } = useWindowSize()
+
+const cardGap = computed(() => {
+  if (width.value <= 1296) return 32
+  // else if(width.value <=)
+  else return 52
+})
+
+const paginationConfig = {
+  el: ".pagination",
+  bulletClass: "pagination-item",
+  bulletActiveClass: "pagination-item--active",
+  clickable: true,
 }
 
-const root = ref(null);
-const onIntersectionObserver = ([{ isIntersecting }] ) => {
-  if(isIntersecting) root.value.classList.add('visible')
+const root = ref(null)
+const onIntersectionObserver = ([{ isIntersecting }]) => {
+  if (isIntersecting) root.value.classList.add("visible")
 }
-
 </script>
 
 <style lang="scss">
-@import '@/globals';
+@import "@/globals";
 .section-testimonials {
-
-
   &.visible {
     opacity: 1;
-    -webkit-animation: slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s both;
-    animation: slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.4s both;
+    -webkit-animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s
+      both;
+    animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
   }
 
   & *::selection {
@@ -83,6 +109,14 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
     justify-content: space-between;
     align-items: start;
     padding: 0 9.6rem;
+
+    @include respond(tab-land) {
+      padding: 0 4.8rem;
+    }
+
+    @include respond(tab-port) {
+      padding: 0 3.2rem;
+    }
     .title {
       font-size: 3.2rem;
       font-weight: 700;
@@ -92,6 +126,7 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
       color: $color-main;
       display: flex;
       gap: 6px;
+      transition: all 1s ease;
 
       .pagination-item {
         width: 12px;
@@ -100,23 +135,26 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
         border-radius: 1.2rem;
         cursor: pointer;
 
-         &.pagination-item--active {
-          width: 4.8rem
+        &.pagination-item--active {
+          width: 4.8rem;
         }
       }
     }
   }
   .testimonials {
     display: flex;
-    margin-top: 4.8rem;
     flex-shrink: 0;
-    overflow-x: scroll;
     overscroll-behavior-x: contain;
-    padding: 0 0 9.6rem 9.6rem;
-    
-    &::-webkit-scrollbar {
-      display: none;
+    margin: 4.8rem 0 9.6rem 9.6rem;
+    cursor: grab;
+
+    @include respond(tab-land) {
+      margin: 2.4rem 0 4.8rem 4.8rem;
     }
+    @include respond(tab-port) {
+      margin: 2rem 0 3.2rem 3.2rem;
+    }
+
     .testimonial {
       padding: 4.8rem 4.8rem 10rem;
       display: flex;
@@ -125,8 +163,18 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
       background-color: $color-main;
       max-width: 60%;
       border-radius: 1.2rem;
-      box-shadow: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+        0 4px 6px -4px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
+
+      &:last-child {
+        margin-right: 4.8rem !important;
+      }
+
+      @include respond(tab-land) {
+        padding: 3.2rem 3.2rem 7rem;
+        gap: 3.2rem;
+      }
 
       p {
         font-size: 1.8rem;
@@ -140,20 +188,23 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
         align-items: start;
         justify-content: space-between;
 
-        .wrap {
+        .rate-wrap {
           display: flex;
           gap: 7.4rem;
 
-          img {
-
+          @include respond(tab-land) {
+            gap: 4.8rem;
           }
-          
+
+          img {
+          }
+
           .author {
             display: flex;
             flex-direction: column;
             gap: 6px;
             font-weight: 700;
-          
+
             span {
               font-size: 1.2rem;
               color: $color-black-5;
@@ -170,7 +221,6 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
           font-size: 1.8rem;
 
           img {
-
           }
         }
       }

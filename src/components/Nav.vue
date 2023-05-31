@@ -49,24 +49,37 @@ const onHover = (state) => {
 header {
   display: flex;
   align-items: center;
-  padding: 4.8rem 9.6rem;
+  padding: 3.2rem 9.6rem;
   list-style: none;
   max-width: 144rem;
   margin: 0 auto;
   position: sticky;
   top: 0;
 
+  @include respond(tab-land) {
+    padding: 3.2rem 4.8rem;
+  }
+
+  @include respond(tab-port) {
+    padding: 2.4rem 3.2rem;
+  }
+
   .logo {
     font-size: 2.4rem;
     font-weight: 600;
     margin-right: 9.6rem;
     cursor: pointer;
+    @include respond(tab-land) {
+      margin-right: 7.2rem;
+    }
+    @include respond(tab-port) {
+      margin-right: 4.8rem;
+    }
   }
 
   .links,
   .icons {
     display: flex;
-    gap: 1.2rem;
     font-weight: 400;
   }
 
@@ -74,9 +87,17 @@ header {
     font-size: 1.8rem;
     font-weight: 500;
     letter-spacing: 0.4px;
+    gap: 4.8rem;
+
+    @include respond(tab-land) {
+      gap: 3.2rem;
+    }
+
+    @include respond(tab-port) {
+      gap: 2.4rem;
+    }
     .link {
       cursor: pointer;
-      padding: 1rem 1.6rem;
       border-radius: 0.8rem;
       transition: all 0.2s ease-out;
 
@@ -93,6 +114,7 @@ header {
   .icons {
     margin-left: auto;
     display: flex;
+    gap: 1.2rem;
     align-items: center;
     .icon,
     .stick {

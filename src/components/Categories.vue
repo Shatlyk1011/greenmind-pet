@@ -54,6 +54,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
   text-align: center;
   padding: 0 0 9.6rem;
   opacity: 0;
+
+  @include respond(tab-land) {
+    padding: 0 0 4.8rem;
+  }
   &.visible {
     opacity: 1;
     -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
@@ -70,6 +74,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     font-weight: 500;
     color: $color-black-5;
     margin: 1.2rem 0 6.4rem 0;
+
+    @include respond(tab-land) {
+      margin-bottom: 4.8rem;
+    }
   }
 
   .categories {
@@ -84,21 +92,37 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         max-width: 36rem;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
+        @include respond(tab-land) {
+          max-width: 33rem;
+        }
+
         &:nth-child(odd) {
           margin-top: -4.8rem;
+
+          @include respond(tab-land) {
+            margin-top: -3.2rem;
+          }
         }
         &:nth-child(even) {
           margin-top: 4.8rem;
+
+          @include respond(tab-land) {
+            margin-top: 3.2rem;
+          }
         }
 
         img {
           width: 100%;
-          height: clamp(30rem, 50rem, 100%);
+          height: clamp(10rem, 50rem, 70em);
           object-fit: cover;
           border-radius: 1.2rem;
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
             0 8px 10px -6px rgba(0, 0, 0, 0.1);
           transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+          @include respond(tab-land) {
+            height: 45rem;
+          }
 
           &:hover {
             transform: scale(1.05) translateY(-0.5rem);
@@ -132,6 +156,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       box-shadow: 0 1px 1px rgba(0, 0, 0, 0.12), 0 2px 2px rgba(0, 0, 0, 0.12);
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+
+      @include respond(tab-land) {
+        margin-bottom: 7rem;
+      }
 
       &:hover {
         background-color: #eee;
