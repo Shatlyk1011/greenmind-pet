@@ -1,5 +1,5 @@
 <template>
-  <section class="section-about">
+  <section class="section-about" v-intersection-observer="onIntersectionObserver" ref="root">
     <div class="about">
       <h2 class="title">О нас</h2>
       <div class="subtitle">Закажите сейчас и оцените красоту природы</div>
@@ -35,6 +35,14 @@
 </template>
 
 <script setup>
+import { ref } from 'vue'
+import { vIntersectionObserver } from '@vueuse/components'
+
+const root = ref(null)
+
+const onIntersectionObserver = ([{ isIntersecting }] ) => {
+  if(isIntersecting) root.value.classList.add('visible')
+}
 
 </script>
 
@@ -45,6 +53,19 @@
   padding: 0 9.6rem 9.6rem;
   max-width: 144rem;
   margin: 0 auto;
+  opacity: 0;
+  transform: translateX(-50rem) scale(0);
+  transition: all 0.7s ease-in-out;
+  & *::selection {
+        background-color: $color-black-25;
+        color: $color-black;
+      }
+
+  &.visible {
+    opacity: 1;
+    -webkit-animation: slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+    animation: slide-left 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) 0.2s both;
+  }
   .about {
     text-align: center;
     .title {
@@ -75,11 +96,6 @@
           background-color: $color-main;
           border-radius: 10rem;
           align-self: center;
-
-          img {
-
-          }
-
         }
 
         .text {
