@@ -42,16 +42,12 @@ const onIntersectionObserver = ([{ isIntersecting }] ) => {
 @import '@/globals';
 
 .section-hero {
-  // margin: 0 9.6rem;
   padding: 0 9.6rem 9.6rem;
   opacity: 0;
-  transform: translateX(-50rem) scale(0);
-
-  transition: all 0.5s ease-in-out;
-
   &.visible {
     opacity: 1;
-    transform: translateX(0) scale(1);
+    -webkit-animation: slide-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    animation: slide-top 0.8s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
   }
   .container {
     max-width: 144rem;

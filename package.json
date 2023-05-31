@@ -12,7 +12,9 @@
     "@vueuse/components": "^10.1.2",
     "@vueuse/core": "^10.1.2",
     "sass": "^1.62.1",
-    "vue": "^3.2.47"
+    "swiper": "^8.4.7",
+    "vue": "^3.2.47",
+    "vue-awesome-swiper": "^5.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.1.0",

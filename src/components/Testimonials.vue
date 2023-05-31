@@ -79,6 +79,11 @@ const testimonials = [
     display: flex;
     gap: 4.8rem;
     flex-shrink: 0;
+    overflow-x: scroll;
+    overscroll-behavior-x: contain;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .testimonial {
       padding: 4.8rem 4.8rem 10rem;
       display: flex;
@@ -89,6 +94,11 @@ const testimonials = [
       border-radius: 1.2rem;
       margin-top: 4.8rem;
       box-sizing: border-box;
+
+      & *::selection {
+        background-color: $color-black-25;
+        color: $color-black;
+      }
 
       p {
         font-size: 1.8rem;
