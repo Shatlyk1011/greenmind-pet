@@ -58,15 +58,27 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
   @include respond(tab-land) {
     padding: 0 0 4.8rem;
   }
+
+  @include respond(tab-port) {
+    padding: 0 0 3.2rem;
+  }
+
+  @include respond(phone) {
+    padding: 0 0 1.6rem;
+  }
   &.visible {
     opacity: 1;
-    -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
-      0.2s both;
-    animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+    -webkit-animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s
+      both;
+    animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
   }
   .title {
     font-size: 3.2rem;
     font-weight: 600;
+
+    @include respond(tab-port) {
+      font-size: 2.4rem;
+    }
   }
 
   .subtitle {
@@ -78,6 +90,11 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     @include respond(tab-land) {
       margin-bottom: 4.8rem;
     }
+
+    @include respond(tab-port) {
+      font-size: 1.6rem;
+      margin: 1rem 0 3.2rem;
+    }
   }
 
   .categories {
@@ -88,6 +105,15 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       max-width: 144rem;
       margin: 0 auto;
 
+      @include respond(smallest) {
+        flex-direction: column;
+        align-items: center;
+        padding: 2.4rem 1.6rem;
+        gap: 2.4rem;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
       .card {
         max-width: 36rem;
         transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -96,11 +122,30 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           max-width: 33rem;
         }
 
+        @include respond(tab-port) {
+          max-width: 25rem;
+        }
+
+        @include respond(phone) {
+          max-width: 17rem;
+        }
+
+        @include respond(smallest) {
+          max-width: 90%;
+        }
+
         &:nth-child(odd) {
           margin-top: -4.8rem;
 
           @include respond(tab-land) {
             margin-top: -3.2rem;
+          }
+
+          @include respond(tab-port) {
+            margin-top: -2.4rem;
+          }
+          @include respond(smallest) {
+            margin-top: 0;
           }
         }
         &:nth-child(even) {
@@ -109,11 +154,24 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           @include respond(tab-land) {
             margin-top: 3.2rem;
           }
+
+          @include respond(tab-port) {
+            margin-top: 2.4rem;
+          }
+          @include respond(smallest) {
+            margin-top: 0;
+          }
+        }
+
+        &:last-child {
+          @include respond(smallest) {
+            grid-column: 1/-1;
+          }
         }
 
         img {
           width: 100%;
-          height: clamp(10rem, 50rem, 70em);
+          height: 50rem;
           object-fit: cover;
           border-radius: 1.2rem;
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
@@ -124,6 +182,17 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
             height: 45rem;
           }
 
+          @include respond(tab-port) {
+            height: 32rem;
+          }
+          @include respond(phone) {
+            height: 25rem;
+          }
+
+          @include respond(smallest) {
+            height: 100%;
+          }
+
           &:hover {
             transform: scale(1.05) translateY(-0.5rem);
             z-index: 20;
@@ -131,6 +200,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
               0 2px 4px rgba(0, 0, 0, 0.07), 0 4px 8px rgba(0, 0, 0, 0.07),
               0 8px 16px rgba(0, 0, 0, 0.07), 0 16px 32px rgba(0, 0, 0, 0.07),
               0 32px 64px rgba(0, 0, 0, 0.07);
+
+            @include respond(smallest) {
+              transform: none;
+            }
           }
         }
 
@@ -138,6 +211,15 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           font-size: 1.8rem;
           font-weight: 700;
           margin-top: 1.2rem;
+
+          @include respond(tab-port) {
+            font-size: 1.6rem;
+            margin-top: 1rem;
+            font-weight: 500;
+          }
+          @include respond(smallest) {
+            font-size: 1.8rem;
+          }
         }
       }
       &:hover .card:not(:hover) {
@@ -159,6 +241,16 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 
       @include respond(tab-land) {
         margin-bottom: 7rem;
+      }
+
+      @include respond(tab-port) {
+        margin-bottom: 4rem;
+      }
+
+      @include respond(phone) {
+        margin: 1.6rem 0 3.2rem;
+        padding: 1rem 1.6rem;
+        font-size: 1.6rem;
       }
 
       &:hover {

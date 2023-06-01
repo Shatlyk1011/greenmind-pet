@@ -75,6 +75,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     padding: 0 3.2rem 3.2rem;
   }
 
+  @include respond(phone) {
+    padding: 0 1.6rem 3.2rem;
+  }
+
   & *::selection {
     background-color: $color-black-25;
     color: $color-black;
@@ -82,9 +86,9 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 
   &.visible {
     opacity: 1;
-    -webkit-animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s
-      both;
-    animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
+    -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      0.2s both;
+    animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s both;
   }
 
   .about {
@@ -92,6 +96,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     .title {
       font-size: 3.2rem;
       font-weight: 600;
+
+      @include respond(tab-port) {
+        font-size: 2.4rem;
+      }
     }
 
     .subtitle {
@@ -103,6 +111,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       @include respond(tab-land) {
         margin: 1.2rem 0 3.2rem;
       }
+      @include respond(tab-port) {
+        font-size: 1.6rem;
+        margin: 1rem 0 2.4rem;
+      }
     }
 
     .cards {
@@ -110,11 +122,33 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       grid-template-columns: repeat(3, 1fr);
       gap: 2.4rem;
 
+      @include respond(tab-port) {
+        gap: 2rem;
+      }
+
+      @include respond(phone) {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.6rem;
+      }
+      @include respond(smallest) {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
       .card {
         display: inline-flex;
         flex-direction: column;
         max-width: 400px;
         justify-self: center;
+
+        @include respond(phone) {
+          &:last-child {
+            grid-column: 1 / -1;
+          }
+        }
+
+        @include respond(smallest) {
+        }
 
         .img {
           padding: 2.8rem;
@@ -122,9 +156,19 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           border-radius: 10rem;
           align-self: center;
 
+          @include respond(tab-port) {
+            padding: 2rem;
+          }
+
           &:hover {
             animation: spin 2s ease-in-out infinite;
             outline: 2px solid $color-black-5;
+          }
+
+          img {
+            @include respond(tab-port) {
+              width: 2.4rem;
+            }
           }
         }
 
@@ -132,6 +176,11 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           font-size: 1.8rem;
           font-weight: 700;
           margin-top: 2.4rem;
+
+          @include respond(tab-port) {
+            font-size: 1.6rem;
+            margin-top: 2rem;
+          }
         }
 
         .description {
@@ -140,6 +189,12 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           line-height: 1.35;
           font-weight: 500;
           color: $color-black-5;
+
+          @include respond(tab-port) {
+            font-size: 1.6rem;
+            line-height: 1.3;
+            margin-top: 1rem;
+          }
         }
       }
     }

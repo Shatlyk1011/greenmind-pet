@@ -7,7 +7,8 @@
     <div class="container">
       <div class="left">
         <h1>
-          Купите растения <br />
+          <!-- remove br in 'smallest' viewport -->
+          Купите растения <br v-if="width > 440" />
           своей мечты
         </h1>
         <div class="clients">
@@ -32,6 +33,11 @@
       <div class="right">
         <img class="plant-img" src="./../assets/flower-main.png" alt="" />
         <img
+          class="plant-img--phone"
+          src="./../assets/plant-phone.jpg"
+          alt=""
+        />
+        <img
           class="curly-img--2"
           src="./../assets/icons/curly-top.png"
           alt=""
@@ -42,10 +48,13 @@
 </template>
 
 <script setup>
-import { ref } from "vue"
+import { ref, computed } from "vue"
 import { vIntersectionObserver } from "@vueuse/components"
+import { useWindowSize } from "@vueuse/core"
 
 const root = ref(null)
+
+const { width } = useWindowSize()
 
 const onIntersectionObserver = ([{ isIntersecting }]) => {
   if (isIntersecting) root.value.classList.add("visible")
@@ -58,6 +67,7 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 .section-hero {
   padding: 0 9.6rem 9.6rem;
   opacity: 0;
+  // transition-delay: 0.2s;
 
   @include respond(tab-land) {
     padding: 0 4.8rem 4.8rem;
@@ -67,12 +77,23 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     padding: 0 3.2rem 4.8rem;
   }
 
+  @include respond(phone) {
+    padding: 0 1.6rem 4.8rem;
+  }
+  @include respond(smallest) {
+    padding: 0 1.6rem 3.2rem;
+  }
+
   &.visible {
+    -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      0.3s backwards;
+    animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s
+      backwards;
     opacity: 1;
-    -webkit-animation: slide-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
-    animation: slide-top 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
   }
   .container {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
     max-width: 144rem;
     height: 51rem;
     padding: 4.8rem 7.2rem 0 4.8rem;
@@ -83,9 +104,8 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     border-radius: 2.4rem;
     box-shadow: rgba(17, 17, 26, 0.1) 0px 1px 0px,
       rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 48px;
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
     overflow: hidden;
+    z-index: 1;
 
     @include respond(tab-land) {
       padding: 3.2rem 4.8rem 0 3.2rem;
@@ -97,8 +117,27 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
       height: 33rem;
     }
 
+    @include respond(phone) {
+      padding: 1.6rem;
+      grid-template-columns: 1fr;
+      height: 100%;
+    }
+    @include respond(smallest) {
+      border-radius: 1.6rem;
+    }
+
     .left {
       grid-column: 1 / span 7;
+
+      @include respond(phone) {
+        grid-column: 1 / -1;
+        text-align: center;
+        max-width: 70%;
+        margin: 0 auto;
+      }
+      @include respond(smallest) {
+        max-width: 100%;
+      }
       h1 {
         font-size: 6.4rem;
         line-height: 1.1;
@@ -111,6 +150,13 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         @include respond(tab-port) {
           font-size: 4rem;
           line-height: 1.3;
+        }
+
+        @include respond(phone) {
+          line-height: 1.2;
+        }
+        @include respond(smallest) {
+          font-size: 3.2rem;
         }
 
         &:hover {
@@ -138,9 +184,28 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           padding-left: 2.4rem;
           margin-top: 1.2rem;
         }
+
+        @include respond(phone) {
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          border-left: none;
+          padding: 0;
+          margin-top: 6px;
+          gap: 0.6rem;
+          font-size: 2.4rem;
+        }
+
+        @include respond(smallest) {
+          font-size: 1.8rem;
+          margin-top: 4px;
+        }
         span {
           font-size: 1.8rem;
           font-weight: 400;
+          @include respond(smallest) {
+            font-size: 1.6rem;
+          }
         }
       }
 
@@ -151,16 +216,24 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         @include respond(tab-land) {
           gap: 1rem;
         }
+        @include respond(phone) {
+          justify-content: center;
+        }
+
         .search {
           display: flex;
           align-items: center;
           margin-top: 4.8rem;
           box-sizing: border-box;
           max-width: 45rem;
-          width: 80%;
+          width: 100%;
 
           @include respond(tab-land) {
             margin-top: 3.2rem;
+          }
+
+          @include respond(phone) {
+            margin-top: 1.6rem;
           }
 
           input {
@@ -174,7 +247,7 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16),
               0 3px 6px rgba(0, 0, 0, 0.23);
             line-height: 1.5;
-            transition: all 0.3 ease-in;
+            transition: all 0.2s ease-in;
 
             @include respond(tab-land) {
               padding: 1.4rem;
@@ -184,6 +257,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
               padding: 1rem 0.8rem;
               box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1),
                 0 3px 6px rgba(0, 0, 0, 0.15);
+            }
+
+            @include respond(phone) {
+              padding: 4px;
             }
 
             &:focus {
@@ -201,6 +278,10 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
               font-family: inherit;
               color: $color-black-5;
               font-size: inherit;
+
+              @include respond(phone) {
+                font-size: 1.4rem;
+              }
             }
           }
 
@@ -225,6 +306,12 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
               margin-left: -4.2rem;
             }
 
+            @include respond(phone) {
+              padding: 4px;
+              border-radius: 6px;
+              margin-left: -3rem;
+            }
+
             &:hover {
               background-color: rgba($color-main, 0.8);
             }
@@ -237,6 +324,11 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
               @include respond(tab-land) {
                 width: 1.8rem;
                 height: 1.8rem;
+              }
+
+              @include respond(phone) {
+                width: 1.4rem;
+                height: 1.4rem;
               }
             }
           }
@@ -255,6 +347,9 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
             width: 30%;
             height: 50%;
             top: 3.5rem;
+          }
+          @include respond(phone) {
+            display: none;
           }
         }
       }
@@ -280,11 +375,43 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         height: 25rem;
       }
 
+      @include respond(phone) {
+        grid-row: 2 / 3;
+        grid-column: 1 / -1;
+        text-align: center;
+        margin: 0 auto;
+        width: 70%;
+        margin-top: 2rem;
+        background-color: transparent;
+      }
+      @include respond(smallest) {
+        width: 100%;
+        height: 20rem;
+      }
+
       .plant-img {
         position: absolute;
         bottom: 0;
         right: -2rem;
         height: 120%;
+
+        @include respond(phone) {
+          left: 50%;
+          transform: translateX(-50%);
+          display: none;
+        }
+
+        &--phone {
+          display: none;
+          @include respond(phone) {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            background-position: bottom;
+            border-radius: 1rem;
+          }
+        }
       }
       .curly-img--2 {
         position: absolute;
@@ -300,6 +427,14 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           width: 20%;
           right: -2.5rem;
           top: -7rem;
+        }
+        @include respond(phone) {
+          width: 14%;
+          top: -5rem;
+          right: -8rem;
+        }
+        @include respond(smallest) {
+          display: none;
         }
       }
     }
