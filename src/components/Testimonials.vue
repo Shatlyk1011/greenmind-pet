@@ -71,9 +71,12 @@ const testimonials = [
 const { width, height } = useWindowSize()
 
 const cardGap = computed(() => {
-  if (width.value <= 1296) return 32
-  // else if(width.value <=)
-  else return 52
+  let sWidth = width.value
+  if (sWidth <= 1296 && sWidth >= 1001) return 32
+  else if (sWidth <= 1000 && sWidth >= 741) return 24
+  else if (sWidth <= 740 && sWidth >= 441) return 16
+  else if (sWidth <= 440) return 10
+  else return 48
 })
 
 const paginationConfig = {
@@ -94,9 +97,9 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 .section-testimonials {
   &.visible {
     opacity: 1;
-    -webkit-animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s
-      both;
-    animation: slide-left 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
+    -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      0.4s both;
+    animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
   }
 
   & *::selection {
@@ -117,16 +120,32 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     @include respond(tab-port) {
       padding: 0 3.2rem;
     }
+
+    @include respond(phone) {
+      padding: 0 1.6rem;
+      // align-items: center;
+    }
+    @include respond(smallest) {
+      gap: 1.6rem;
+    }
     .title {
       font-size: 3.2rem;
       font-weight: 700;
       line-height: 1.3;
+
+      @include respond(tab-port) {
+        font-size: 2.4rem;
+      }
+      @include respond(phone) {
+        font-size: 2rem;
+      }
     }
     .pagination {
       color: $color-main;
       display: flex;
       gap: 6px;
       transition: all 1s ease;
+      margin-top: 7px;
 
       .pagination-item {
         width: 12px;
@@ -135,8 +154,20 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         border-radius: 1.2rem;
         cursor: pointer;
 
+        @include respond(tab-port) {
+          width: 1rem;
+          height: 0.5rem;
+        }
+        @include respond(smallest) {
+          height: 0.4rem;
+        }
+
         &.pagination-item--active {
           width: 4.8rem;
+
+          @include respond(tab-port) {
+            width: 3.2rem;
+          }
         }
       }
     }
@@ -145,14 +176,18 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
     display: flex;
     flex-shrink: 0;
     overscroll-behavior-x: contain;
-    margin: 4.8rem 0 9.6rem 9.6rem;
+    margin: 4.8rem 0 9.6rem 0;
     cursor: grab;
 
     @include respond(tab-land) {
-      margin: 2.4rem 0 4.8rem 4.8rem;
+      margin: 2.4rem 0 4.8rem 0;
     }
     @include respond(tab-port) {
-      margin: 2rem 0 3.2rem 3.2rem;
+      margin: 2rem 0 3.2rem 0;
+    }
+
+    @include respond(phone) {
+      margin: 1rem 0 1.6rem 0;
     }
 
     .testimonial {
@@ -167,13 +202,49 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         0 4px 6px -4px rgba(0, 0, 0, 0.1);
       box-sizing: border-box;
 
-      &:last-child {
-        margin-right: 4.8rem !important;
-      }
-
       @include respond(tab-land) {
         padding: 3.2rem 3.2rem 7rem;
         gap: 3.2rem;
+      }
+
+      @include respond(tab-port) {
+        padding: 2.4rem 2.4rem 4.8rem;
+        gap: 2.4rem;
+      }
+
+      @include respond(phone) {
+        padding: 1.6rem 1.6rem 3.2rem;
+        max-width: 65%;
+      }
+      @include respond(smallest) {
+        max-width: 85%;
+      }
+
+      &:last-child {
+        margin-right: 9.6rem !important;
+
+        @include respond(tab-land) {
+          margin-right: 4.8rem !important;
+        }
+        @include respond(tab-port) {
+          margin-right: 3.2rem !important;
+        }
+        @include respond(phone) {
+          margin-right: 1.6rem !important;
+        }
+      }
+      &:first-child {
+        margin-left: 9.6rem !important;
+
+        @include respond(tab-land) {
+          margin-left: 4.8rem !important;
+        }
+        @include respond(tab-port) {
+          margin-left: 3.2rem !important;
+        }
+        @include respond(phone) {
+          margin-left: 1.6rem !important;
+        }
       }
 
       p {
@@ -181,6 +252,17 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
         font-weight: 500;
         color: $color-black-5;
         line-height: 1.4;
+
+        @include respond(tab-port) {
+          font-size: 1.6rem;
+        }
+        @include respond(phone) {
+          font-size: 1.4rem;
+          line-height: 1.5;
+        }
+        @include respond(smallest) {
+          line-height: 1.3;
+        }
       }
 
       .rate {
@@ -196,7 +278,15 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
             gap: 4.8rem;
           }
 
+          @include respond(tab-port) {
+            gap: 3.2rem;
+          }
+
           img {
+            @include respond(tab-port) {
+              width: 3.2rem;
+              height: 2.4rem;
+            }
           }
 
           .author {
@@ -205,10 +295,19 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
             gap: 6px;
             font-weight: 700;
 
+            @include respond(tab-port) {
+              gap: 4px;
+              font-size: 1.4rem;
+            }
+
             span {
               font-size: 1.2rem;
               color: $color-black-5;
               font-weight: 500;
+
+              @include respond(tab-port) {
+                font-size: 1rem;
+              }
             }
           }
         }
@@ -220,7 +319,15 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
           font-weight: 700;
           font-size: 1.8rem;
 
+          @include respond(tab-port) {
+            font-size: 1.6rem;
+            gap: 0.6rem;
+          }
+
           img {
+            @include respond(tab-port) {
+              width: 1.4rem;
+            }
           }
         }
       }

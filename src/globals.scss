@@ -16,14 +16,14 @@ $color-red: #d92d20;
 
 @mixin respond($breakpoint) {
   @if $breakpoint == smallest {
-    @media only screen and (max-width: 25em) {
+    @media only screen and (max-width: 27.5em) {
       @content;
-    } //400px
+    } //440px
   }
   @if $breakpoint == phone {
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 46.25em) {
       @content;
-    } //600px
+    } //740px
   }
   @if $breakpoint == tab-port {
     @media only screen and (max-width: 62.5em) {
@@ -52,6 +52,10 @@ html {
   font-size: 62.5%;
   font-family: "Roboto", sans-serif;
   box-sizing: border-box;
+
+  @include respond(phone) {
+    font-size: 50%;
+  }
 }
 
 body {
@@ -80,6 +84,32 @@ ul {
   0% {
     -webkit-transform: translateY(-200px);
     transform: translateY(-200px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+/*  */
+
+@-webkit-keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
+    opacity: 0;
+  }
+  100% {
+    -webkit-transform: translateY(0);
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slide-bottom {
+  0% {
+    -webkit-transform: translateY(200px);
+    transform: translateY(200px);
     opacity: 0;
   }
   100% {
@@ -140,6 +170,7 @@ ul {
     opacity: 1;
   }
 }
+/*  */
 
 @keyframes spin {
   0% {
