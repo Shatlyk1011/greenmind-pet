@@ -1,4 +1,4 @@
-# GREENLAND 
+# GREENMIND 
 
 ## live: https://greenmind-v1.netlify.app/
 
