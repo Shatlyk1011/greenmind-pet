@@ -18,7 +18,7 @@
         <div class="wrap">
           <div class="search">
             <input type="text" placeholder="Что вы ищете?" />
-            <button>
+            <button type="button">
               <img src="./../assets/icons/search.png" alt="" />
             </button>
           </div>

@@ -5,7 +5,7 @@
     ref="root"
   >
     <div class="btns">
-      <button class="prevEl">
+      <button class="prevEl" type="button">
         <svg
           width="16"
           height="16"
@@ -17,7 +17,7 @@
           />
         </svg>
       </button>
-      <button class="nextEl">
+      <button class="nextEl" type="button">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="16"
@@ -37,7 +37,7 @@
         Самый простой способ вести здоровый образ жизни — покупать любимые
         растения
       </h4>
-      <button>Посмотреть еще &rarr;</button>
+      <button type="button">Посмотреть еще &rarr;</button>
     </div>
 
     <swiper

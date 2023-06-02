@@ -14,7 +14,7 @@
           <p>{{ card.title }}</p>
         </div>
       </div>
-      <button>Посмотреть &rarr;</button>
+      <button type="button">Посмотреть &rarr;</button>
     </div>
   </section>
 </template>
