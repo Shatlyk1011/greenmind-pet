@@ -48,7 +48,7 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue"
+import { ref } from "vue"
 import { vIntersectionObserver } from "@vueuse/components"
 import { useWindowSize } from "@vueuse/core"
 
