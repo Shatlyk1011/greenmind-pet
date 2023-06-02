@@ -95,6 +95,8 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 <style lang="scss">
 @import "@/globals";
 .section-testimonials {
+  max-width: 192rem;
+  margin: 0 auto;
   &.visible {
     opacity: 1;
     -webkit-animation: slide-right 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94)
