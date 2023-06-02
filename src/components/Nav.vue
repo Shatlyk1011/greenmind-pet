@@ -30,11 +30,14 @@
 import { ref } from "vue"
 import { vElementHover, vOnClickOutside } from "@vueuse/components"
 import { vIntersectionObserver } from "@vueuse/components"
+import { useWindowSize } from "@vueuse/core"
 
 //menu control
 const container = ref()
 const toggleMenu = () => container.value.classList.toggle("active")
 const closeMenu = () => container.value.classList.remove("active")
+
+const { width } = useWindowSize()
 
 const root = ref(null)
 
@@ -44,17 +47,15 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
 
 const links = document.getElementsByClassName("link")
 
-const isHovered = ref(false)
-
 const onHover = (state) => {
   let arrLinks = [...links]
 
-  if (state) {
-    isHovered.value = state
-    arrLinks.forEach((link) => link.classList.add("active"))
-  } else {
-    isHovered.value = state
-    arrLinks.forEach((link) => link.classList.remove("active"))
+  if (width.value > 740) {
+    if (state) {
+      arrLinks.forEach((link) => link.classList.add("active"))
+    } else {
+      arrLinks.forEach((link) => link.classList.remove("active"))
+    }
   }
 }
 </script>
@@ -125,7 +126,7 @@ header {
       position: absolute;
       top: 0;
       right: 0;
-      background-color: rgba($color-main, 0.4);
+      background-color: rgba($color-main, 0.5);
       backdrop-filter: blur(10px);
       flex-direction: column;
       justify-content: center;

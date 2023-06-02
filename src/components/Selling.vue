@@ -139,7 +139,6 @@ const onIntersectionObserver = ([{ isIntersecting }]) => {
   margin: 0 auto;
   position: relative;
   opacity: 0;
-  z-index: -2;
 
   @include respond(tab-land) {
     padding: 0 0 4.8rem 4.8rem;
