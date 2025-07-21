@@ -2,4 +2,6 @@ import { createApp } from "vue"
 import "./globals.scss"
 import App from "./App.vue"
 
-createApp(App).mount("#app")
+import LenisVue from "lenis/vue";
+
+createApp(App).use(LenisVue).mount("#app");

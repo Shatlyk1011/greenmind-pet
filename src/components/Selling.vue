@@ -50,7 +50,7 @@
         <div class="img">
           <img :src="card.imgUrl" :alt="card.title" />
           <!-- show on hover -->
-          <div class="img__label"><span>Подробнее</span></div>
+          <div class="img__label"><span>More info</span></div>
         </div>
         <div class="card__title">{{ card.title }}</div>
         <div class="card__price">&#8369; {{ card.price }}.00</div>

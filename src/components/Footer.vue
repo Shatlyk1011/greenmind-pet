@@ -50,7 +50,7 @@
       2023 all Right Reserved Term of use GREENMIND
     </div>
     <div style="margin-top: 1rem" class="copyright">
-      Дизайн
+      Design
       <a
         target="_blank"
         href="https://www.figma.com/file/FKd689NuU91mpisQstSaO9/E-Commerce-Plant-Shop-Website-(Community)?type=design&node-id=17%3A40&t=MKadxuWrtAi2VwqT-1"
